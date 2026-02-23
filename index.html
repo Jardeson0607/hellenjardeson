@@ -3,14 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Minha Hellen</title>
+    <title>Para minha Hellen</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --cor-principal: #ff4d6d;
             --cor-fundo: #fff0f3;
             --cor-texto: #333;
-            --glass: rgba(255, 255, 255, 0.85);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -21,98 +20,65 @@
             color: var(--cor-texto);
             margin: 0;
             overflow-x: hidden;
-            width: 100%;
-        }
-
-        /* Efeito de Corações ao Fundo */
-        #heart-container {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            pointer-events: none;
-            z-index: -1;
         }
 
         header {
-            padding: 80px 20px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('fotoshj/WhatsApp Image 2026-02-22 at 21.32.18.jpeg');
+            padding: 60px 20px;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fotoshj/WhatsApp Image 2026-02-22 at 21.32.18.jpeg');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
-            clip-path: ellipse(150% 100% at 50% 0%);
         }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; margin: 0; }
 
         .contador-container {
-            background: var(--glass);
-            backdrop-filter: blur(10px);
-            margin: -40px auto 30px;
-            padding: 25px;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.3);
-        }
-
-        #timer {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--cor-principal);
-        }
-
-        /* Cards de Revelação */
-        .cards-revelar {
+            background: rgba(255, 255, 255, 0.9);
+            margin: -30px auto 30px;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            align-items: center;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(255, 77, 109, 0.15);
+            text-align: center;
         }
 
-        .card { width: 100%; max-width: 320px; height: 80px; perspective: 1000px; cursor: pointer; }
-        .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
-        .card.aberto .card-inner { transform: rotateY(180deg); }
-        .frente, .tras { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border-radius: 15px; padding: 15px; font-weight: bold; font-size: 0.9rem; }
-        .frente { background: white; color: var(--cor-principal); border: 2px dashed var(--cor-principal); }
-        .tras { background: var(--cor-principal); color: white; transform: rotateY(180deg); }
+        #timer { font-size: 1rem; font-weight: 700; color: var(--cor-principal); }
 
-        /* Carrossel */
-        .carousel-container { width: 100%; overflow-x: auto; padding: 30px 0; display: flex; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        /* Ajuste das Fotos para não cortar */
+        .carousel-container { width: 100%; overflow-x: auto; padding: 20px 0; display: flex; scroll-snap-type: x mandatory; scrollbar-width: none; }
         .carousel-container::-webkit-scrollbar { display: none; }
-        .carousel-track { display: flex; gap: 20px; padding: 0 30px; }
-        .polaroid { flex: 0 0 75vw; max-width: 260px; background: white; padding: 10px 10px 30px 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); scroll-snap-align: center; transform: rotate(-2deg); }
-        .polaroid:nth-child(even) { transform: rotate(2deg); }
-        .polaroid img { width: 100%; height: 280px; object-fit: cover; }
-        .polaroid p { font-family: 'Dancing Script', cursive; font-size: 1.3rem; margin: 10px 0 0; text-align: center; }
+        .carousel-track { display: flex; gap: 15px; padding: 0 20px; }
+        
+        .polaroid { 
+            flex: 0 0 85vw; 
+            max-width: 280px; 
+            background: white; 
+            padding: 10px 10px 25px 10px; 
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1); 
+            scroll-snap-align: center;
+        }
+
+        .polaroid img { 
+            width: 100%; 
+            height: 300px; 
+            object-fit: contain; /* Mostra a foto inteira sem cortar */
+            background-color: #f9f9f9;
+        }
+
+        .polaroid p { font-family: 'Dancing Script', cursive; font-size: 1.2rem; margin: 10px 0 0; text-align: center; }
 
         /* Botões */
-        .controles { padding: 30px 20px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
-        .btn { border: none; padding: 15px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: 'Montserrat', sans-serif; width: 85%; max-width: 300px; }
-        #btn-musica { background: white; color: var(--cor-principal); border: 2px solid var(--cor-principal); }
-        #btn-surpresa { background: var(--cor-principal); color: white; box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4); }
+        .controles { padding: 20px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
+        .btn { border: none; padding: 14px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; width: 80%; max-width: 280px; font-family: 'Montserrat'; }
+        #btn-musica { background: white; color: var(--cor-principal); border: 1px solid var(--cor-principal); }
+        #btn-surpresa { background: var(--cor-principal); color: white; }
 
-        /* Modal */
-        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
-        .modal-content { background: white; margin: 50% auto; padding: 35px 20px; border-radius: 25px; width: 85%; max-width: 350px; text-align: center; position: relative; animation: pop 0.4s ease; }
-        @keyframes pop { from { transform: scale(0.7); opacity: 0; } }
-        .close { position: absolute; right: 15px; top: 5px; font-size: 25px; cursor: pointer; color: #bbb; }
-
-        footer { padding: 40px; font-size: 0.7rem; opacity: 0.5; text-align: center; }
-
-        @keyframes floatHeart {
-            0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            50% { opacity: 0.6; }
-            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
-        }
+        footer { padding: 20px; font-size: 0.7rem; opacity: 0.5; text-align: center; }
     </style>
 </head>
 <body>
-
-    <div id="heart-container"></div>
 
     <header>
         <h1>nós</h1>
@@ -120,70 +86,48 @@
     </header>
 
     <div class="contador-container">
-        <p style="margin:0; font-size: 0.7rem; text-transform: uppercase; color: #888;">nosso tempo desde o primeiro beijo</p>
+        <p style="margin:0; font-size: 0.7rem; color: #888;">NOSSO TEMPO JUNTOS</p>
         <div id="timer">Calculando...</div>
-    </div>
-
-    <div class="cards-revelar">
-        <div class="card" onclick="this.classList.toggle('aberto')">
-            <div class="card-inner">
-                <div class="frente">O que você é para mim?</div>
-                <div class="tras">Minha pessoa favorita no mundo. ❤️</div>
-            </div>
-        </div>
-        <div class="card" onclick="this.classList.toggle('aberto')">
-            <div class="card-inner">
-                <div class="frente">Um desejo...</div>
-                <div class="tras">gayzage...</div>
-            </div>
-        </div>
     </div>
 
     <div class="carousel-container">
         <div class="carousel-track">
             <div class="polaroid">
                 <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.13 (1).jpeg">
-                <p>Nossa conexão</p>
+                <p>"Quero ser feliz também..." 🌊</p>
             </div>
             <div class="polaroid">
                 <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.14 (2).jpeg">
-                <p>Teu sorriso</p>
+                <p>"Navegar nas águas do teu mar..." ⛵</p>
             </div>
             <div class="polaroid">
                 <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.15 (3).jpeg">
-                <p>Momentos</p>
+                <p>"Desejar para o mundo sempre o mais..." 🌿</p>
+            </div>
+            <div class="polaroid">
+                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.18.jpeg">
+                <p>"O que eu espero para nós dois..." ✨</p>
             </div>
             <div class="polaroid">
                 <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.39.09 (1).jpeg">
-                <p>13/12/2025 ❤️</p>
+                <p>"Sempre perto de você." ❤️</p>
             </div>
         </div>
     </div>
 
     <div class="controles">
         <audio id="musica-tema" loop>
-            <source src="Maneva - Luz que me traz paz - Danilo Costa .mp3" type="audio/mpeg">
+            <source src="maneva.mp3" type="audio/mpeg">
         </audio>
         <button onclick="toggleMusica()" id="btn-musica" class="btn">🎵 Tocar Maneva</button>
-        <button onclick="abrirSurpresa()" id="btn-surpresa" class="btn">✨ Abrir Surpresa</button>
+        <button onclick="alert('Quero ser feliz também, navegar nas águas do teu mar... 🌊')" id="btn-surpresa" class="btn">✨ Abrir Surpresa</button>
     </div>
 
-    <div id="modalSurpresa" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharSurpresa()">&times;</span>
-            <h2 style="font-family: 'Dancing Script', cursive; color: var(--cor-principal);">Para Hellen</h2>
-            <p>"Quero ser feliz também, navegar nas águas do teu mar..." 🌊</p>
-            <p style="font-size: 0.7rem; font-weight: bold; letter-spacing: 2px;">— NATIRUTS —</p>
-        </div>
-    </div>
-
-    <footer>
-        <p>feito com ❤️ por jacim.</p>
-    </footer>
+    <footer>feito com ❤️ por jacim</footer>
 
     <script>
         function atualizarContador() {
-            const dataInicio = new Date(2025, 11, 13, 1, 20); 
+            const dataInicio = new Date(2025, 11, 13, 1, 20); // 13 de Dezembro
             const agora = new Date();
             const diff = agora - dataInicio;
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -192,19 +136,8 @@
             const s = Math.floor((diff / 1000) % 60);
             document.getElementById('timer').innerHTML = `${d} dias, ${h}h, ${m}m e ${s}s`;
         }
-
-        function criarCoracao() {
-            const container = document.getElementById('heart-container');
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤️';
-            heart.style.position = 'absolute';
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
-            heart.style.animation = `floatHeart ${Math.random() * 4 + 4}s linear forwards`;
-            container.appendChild(heart);
-            setTimeout(() => heart.remove(), 8000);
-        }
-        setInterval(criarCoracao, 600);
+        setInterval(atualizarContador, 1000);
+        atualizarContador();
 
         function toggleMusica() {
             const m = document.getElementById('musica-tema');
@@ -212,12 +145,6 @@
             if (m.paused) { m.play(); b.innerHTML = "⏸ Pausar Música"; }
             else { m.pause(); b.innerHTML = "🎵 Tocar Maneva"; }
         }
-
-        function abrirSurpresa() { document.getElementById('modalSurpresa').style.display = "block"; }
-        function fecharSurpresa() { document.getElementById('modalSurpresa').style.display = "none"; }
-
-        setInterval(atualizarContador, 1000);
-        atualizarContador();
     </script>
 </body>
 </html>
