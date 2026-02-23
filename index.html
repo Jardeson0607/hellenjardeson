@@ -4,92 +4,215 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Minha Hellen</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --cor-principal: #ff4d6d;
             --cor-fundo: #fff0f3;
+            --cor-texto: #333;
         }
+
+        * { box-sizing: border-box; }
 
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--cor-fundo);
-            color: #333;
+            color: var(--cor-texto);
             margin: 0;
-            text-align: center;
+            padding: 0;
+            overflow-x: hidden;
+            width: 100%;
         }
 
         header {
-            padding: 50px 20px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fotoshj/capa.jpg'); /* Se tiver uma foto de capa */
+            padding: 60px 20px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('fotoshj/capa.jpg');
             background-size: cover;
+            background-position: center;
             color: white;
+            text-align: center;
         }
 
         h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin: 0; }
 
+        /* Contador */
         .contador-container {
             background: white;
             margin: -30px auto 30px;
-            padding: 20px;
-            width: 80%;
+            padding: 25px;
+            width: 90%;
             max-width: 500px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
         }
 
         #timer {
             font-size: 1.2rem;
             font-weight: bold;
             color: var(--cor-principal);
+            margin-top: 10px;
         }
 
-        .galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            padding: 20px;
-            max-width: 1000px;
-            margin: auto;
-        }
-
-        .galeria img {
+        /* Carrossel Responsivo */
+        .carousel-container {
             width: 100%;
-            border-radius: 10px;
-            transition: transform 0.3s;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow-x: auto;
+            padding: 20px 0 40px;
+            display: flex;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+        }
+        .carousel-container::-webkit-scrollbar { display: none; }
+
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            padding: 0 20px;
         }
 
-        .galeria img:hover { transform: scale(1.05); }
+        .polaroid {
+            flex: 0 0 80vw;
+            max-width: 300px;
+            background: white;
+            padding: 15px 15px 35px 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            scroll-snap-align: center;
+            transform: rotate(-2deg);
+            transition: 0.3s;
+        }
+        .polaroid:nth-child(even) { transform: rotate(2deg); }
 
-        footer { padding: 40px; font-size: 0.9rem; opacity: 0.7; }
+        .polaroid img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        .polaroid p {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.5rem;
+            margin: 15px 0 0;
+            text-align: center;
+        }
+
+        /* Botões */
+        .controles {
+            margin: 30px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-family: 'Montserrat', sans-serif;
+            width: 80%;
+            max-width: 300px;
+        }
+
+        #btn-musica { background: white; color: var(--cor-principal); border: 2px solid var(--cor-principal); }
+        #btn-surpresa { background: var(--cor-principal); color: white; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3); }
+
+        /* Modal Surpresa */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 40% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 400px;
+            text-align: center;
+            position: relative;
+            animation: bounceIn 0.5s;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            70% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .close { position: absolute; right: 15px; top: 5px; font-size: 25px; cursor: pointer; color: #999; }
+
+        footer { padding: 40px; font-size: 0.8rem; opacity: 0.6; text-align: center; }
+
+        /* Media Queries para Mobile */
+        @media (max-width: 600px) {
+            h1 { font-size: 2.8rem; }
+            .modal-content { margin: 60% auto; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <h1>nós</h1>
-        <p>Desde aquele momento especial...</p>
+        <p>A luz que me traz paz... 🌿</p>
     </header>
 
     <div class="contador-container">
-        <p>desde o nosso primeiro beijo:</p>
-        <div id="timer">Calculando tempo...</div>
+        <p style="margin:0; font-size: 0.9rem;">desde o nosso primeiro beijo:</p>
+        <div id="timer">Calculando...</div>
     </div>
 
-    <section class="galeria">
-        <img src="fotoshj/foto1.jpg" alt="Nosso momento">
-        <img src="fotoshj/foto2.jpg" alt="Nosso momento">
-        <img src="fotoshj/foto3.jpg" alt="Nosso momento">
-    </section>
+    <div class="carousel-container">
+        <div class="carousel-track">
+            <div class="polaroid">
+                <img src="fotoshj/foto1.jpg">
+                <p>O começo de tudo</p>
+            </div>
+            <div class="polaroid">
+                <img src="fotoshj/foto2.jpg">
+                <p>Nossa sintonia</p>
+            </div>
+            <div class="polaroid">
+                <img src="fotoshj/foto3.jpg">
+                <p>13/12/2025 ❤️</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controles">
+        <audio id="musica-tema" loop>
+            <source src="Maneva - Luz que me traz paz - Danilo Costa .mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="toggleMusica()" id="btn-musica" class="btn">🎵 Tocar Maneva</button>
+        <button onclick="abrirSurpresa()" id="btn-surpresa" class="btn">✨ Botão Surpresa</button>
+    </div>
+
+    <div id="modalSurpresa" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharSurpresa()">&times;</span>
+            <h2 style="font-family: 'Dancing Script', cursive; color: var(--cor-principal);">Para você...</h2>
+            <p>"Quero ser feliz também, navegar nas águas do teu mar..." 🌊</p>
+            <p style="font-size: 0.8rem; font-weight: bold;">— Natiruts</p>
+        </div>
+    </div>
 
     <footer>
-        <p>feito por jacim.</p>
+        <p>feito por jacim com ❤️</p>
     </footer>
 
     <script>
         function atualizarContador() {
-            // Data do primeiro beijo: 13/12/2025 às 01:20
+            // Data exata: 13 de Dezembro de 2025, 01:20
             const dataInicio = new Date(2025, 11, 13, 1, 20); 
             const agora = new Date();
             const diff = agora - dataInicio;
@@ -103,8 +226,22 @@
                 `${dias} dias, ${horas}h, ${minutos}m e ${segundos}s`;
         }
 
+        function toggleMusica() {
+            const m = document.getElementById('musica-tema');
+            const b = document.getElementById('btn-musica');
+            if (m.paused) { m.play(); b.innerHTML = "⏸ Pausar Música"; }
+            else { m.pause(); b.innerHTML = "🎵 Tocar Maneva"; }
+        }
+
+        function abrirSurpresa() { document.getElementById('modalSurpresa').style.display = "block"; }
+        function fecharSurpresa() { document.getElementById('modalSurpresa').style.display = "none"; }
+
         setInterval(atualizarContador, 1000);
         atualizarContador();
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('modalSurpresa')) fecharSurpresa();
+        }
     </script>
 </body>
 </html>
