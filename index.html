@@ -10,7 +10,7 @@
             --cor-principal: #ff4d6d;
             --cor-fundo: #fff0f3;
             --cor-texto: #333;
-            --glass: rgba(255, 255, 255, 0.8);
+            --glass: rgba(255, 255, 255, 0.85);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -22,7 +22,6 @@
             margin: 0;
             overflow-x: hidden;
             width: 100%;
-            line-height: 1.6;
         }
 
         /* Efeito de Corações ao Fundo */
@@ -36,7 +35,7 @@
 
         header {
             padding: 80px 20px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('fotoshj/capa.jpeg');
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('fotoshj/WhatsApp Image 2026-02-22 at 21.32.18.jpeg');
             background-size: cover;
             background-position: center;
             color: white;
@@ -44,15 +43,14 @@
             clip-path: ellipse(150% 100% at 50% 0%);
         }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: 4rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
 
-        /* Contador Premium */
         .contador-container {
             background: var(--glass);
             backdrop-filter: blur(10px);
             margin: -40px auto 30px;
-            padding: 30px;
-            width: 85%;
+            padding: 25px;
+            width: 90%;
             max-width: 500px;
             border-radius: 25px;
             box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
@@ -61,132 +59,54 @@
         }
 
         #timer {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--cor-principal);
-            letter-spacing: 1px;
         }
-
-        /* Carrossel de Polaroids */
-        .carousel-container {
-            width: 100%;
-            overflow-x: auto;
-            padding: 40px 0;
-            display: flex;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: none;
-        }
-        .carousel-container::-webkit-scrollbar { display: none; }
-
-        .carousel-track { display: flex; gap: 30px; padding: 0 40px; }
-
-        .polaroid {
-            flex: 0 0 80vw;
-            max-width: 280px;
-            background: white;
-            padding: 15px 15px 40px 15px;
-            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
-            scroll-snap-align: center;
-            transform: rotate(-3deg);
-            transition: 0.5s ease;
-        }
-        .polaroid:nth-child(even) { transform: rotate(3deg); }
-        .polaroid img { width: 100%; height: 300px; object-fit: cover; border-radius: 2px; }
-        .polaroid p { font-family: 'Dancing Script', cursive; font-size: 1.6rem; margin: 15px 0 0; text-align: center; }
 
         /* Cards de Revelação */
         .cards-revelar {
             padding: 20px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             align-items: center;
         }
 
-        .card {
-            width: 100%;
-            max-width: 320px;
-            height: 100px;
-            perspective: 1000px;
-            cursor: pointer;
-        }
-
-        .card-inner {
-            position: relative; width: 100%; height: 100%;
-            text-align: center; transition: transform 0.8s;
-            transform-style: preserve-3d;
-        }
-
+        .card { width: 100%; max-width: 320px; height: 80px; perspective: 1000px; cursor: pointer; }
+        .card-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; }
         .card.aberto .card-inner { transform: rotateY(180deg); }
-
-        .frente, .tras {
-            position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 20px; padding: 15px; font-weight: bold;
-        }
-
+        .frente, .tras { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; border-radius: 15px; padding: 15px; font-weight: bold; font-size: 0.9rem; }
         .frente { background: white; color: var(--cor-principal); border: 2px dashed var(--cor-principal); }
         .tras { background: var(--cor-principal); color: white; transform: rotateY(180deg); }
 
+        /* Carrossel */
+        .carousel-container { width: 100%; overflow-x: auto; padding: 30px 0; display: flex; scroll-snap-type: x mandatory; scrollbar-width: none; }
+        .carousel-container::-webkit-scrollbar { display: none; }
+        .carousel-track { display: flex; gap: 20px; padding: 0 30px; }
+        .polaroid { flex: 0 0 75vw; max-width: 260px; background: white; padding: 10px 10px 30px 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); scroll-snap-align: center; transform: rotate(-2deg); }
+        .polaroid:nth-child(even) { transform: rotate(2deg); }
+        .polaroid img { width: 100%; height: 280px; object-fit: cover; }
+        .polaroid p { font-family: 'Dancing Script', cursive; font-size: 1.3rem; margin: 10px 0 0; text-align: center; }
+
         /* Botões */
-        .controles {
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .btn {
-            border: none;
-            padding: 18px 40px;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: 'Montserrat', sans-serif;
-            width: 85%;
-            max-width: 300px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+        .controles { padding: 30px 20px; display: flex; flex-direction: column; gap: 15px; align-items: center; }
+        .btn { border: none; padding: 15px 30px; border-radius: 50px; font-weight: 700; cursor: pointer; transition: 0.3s; font-family: 'Montserrat', sans-serif; width: 85%; max-width: 300px; }
         #btn-musica { background: white; color: var(--cor-principal); border: 2px solid var(--cor-principal); }
         #btn-surpresa { background: var(--cor-principal); color: white; box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4); }
 
-        /* Modal Surpresa */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-        }
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(5px); }
+        .modal-content { background: white; margin: 50% auto; padding: 35px 20px; border-radius: 25px; width: 85%; max-width: 350px; text-align: center; position: relative; animation: pop 0.4s ease; }
+        @keyframes pop { from { transform: scale(0.7); opacity: 0; } }
+        .close { position: absolute; right: 15px; top: 5px; font-size: 25px; cursor: pointer; color: #bbb; }
 
-        .modal-content {
-            background: white;
-            margin: 45% auto;
-            padding: 40px 20px;
-            border-radius: 30px;
-            width: 85%;
-            max-width: 400px;
-            text-align: center;
-            position: relative;
-            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-
-        .close { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: #ccc; }
-
-        footer { padding: 60px 20px; font-size: 0.8rem; opacity: 0.6; text-align: center; }
+        footer { padding: 40px; font-size: 0.7rem; opacity: 0.5; text-align: center; }
 
         @keyframes floatHeart {
             0% { transform: translateY(100vh) scale(0); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+            50% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
         }
     </style>
 </head>
@@ -200,22 +120,21 @@
     </header>
 
     <div class="contador-container">
-        <p style="margin:0; font-size: 0.8rem; text-transform: uppercase; color: #666;">Desde o nosso primeiro beijo</p>
-        <div id="timer">Calculando nosso tempo...</div>
+        <p style="margin:0; font-size: 0.7rem; text-transform: uppercase; color: #888;">nosso tempo desde o primeiro beijo</p>
+        <div id="timer">Calculando...</div>
     </div>
 
     <div class="cards-revelar">
-        <p style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-bottom: 5px;">Toque para revelar...</p>
         <div class="card" onclick="this.classList.toggle('aberto')">
             <div class="card-inner">
-                <div class="frente">O que sinto por você?</div>
-                <div class="tras">Um amor que cresce a cada segundo.</div>
+                <div class="frente">O que você é para mim?</div>
+                <div class="tras">Minha pessoa favorita no mundo. ❤️</div>
             </div>
         </div>
         <div class="card" onclick="this.classList.toggle('aberto')">
             <div class="card-inner">
-                <div class="frente">Você é...</div>
-                <div class="tras">A luz que ilumina meus dias. 🌿</div>
+                <div class="frente">Um desejo...</div>
+                <div class="tras">gayzage...</div>
             </div>
         </div>
     </div>
@@ -223,15 +142,19 @@
     <div class="carousel-container">
         <div class="carousel-track">
             <div class="polaroid">
-                <img src="fotoshj/foto1.jpeg" alt="Momento 1">
+                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.13 (1).jpeg">
                 <p>Nossa conexão</p>
             </div>
             <div class="polaroid">
-                <img src="fotoshj/foto2.jpeg" alt="Momento 2">
+                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.14 (2).jpeg">
                 <p>Teu sorriso</p>
             </div>
             <div class="polaroid">
-                <img src="fotoshj/foto3.jpeg" alt="Momento 3">
+                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.15 (3).jpeg">
+                <p>Momentos</p>
+            </div>
+            <div class="polaroid">
+                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.39.09 (1).jpeg">
                 <p>13/12/2025 ❤️</p>
             </div>
         </div>
@@ -248,7 +171,7 @@
     <div id="modalSurpresa" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharSurpresa()">&times;</span>
-            <h2 style="font-family: 'Dancing Script', cursive; color: var(--cor-principal); font-size: 2.2rem;">Para Hellen</h2>
+            <h2 style="font-family: 'Dancing Script', cursive; color: var(--cor-principal);">Para Hellen</h2>
             <p>"Quero ser feliz também, navegar nas águas do teu mar..." 🌊</p>
             <p style="font-size: 0.7rem; font-weight: bold; letter-spacing: 2px;">— NATIRUTS —</p>
         </div>
@@ -259,33 +182,29 @@
     </footer>
 
     <script>
-        // Contador 13/12/2025 às 01:20
         function atualizarContador() {
             const dataInicio = new Date(2025, 11, 13, 1, 20); 
             const agora = new Date();
             const diff = agora - dataInicio;
-
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
             const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
             const m = Math.floor((diff / 1000 / 60) % 60);
             const s = Math.floor((diff / 1000) % 60);
-
             document.getElementById('timer').innerHTML = `${d} dias, ${h}h, ${m}m e ${s}s`;
         }
 
-        // Sistema de Corações
         function criarCoracao() {
             const container = document.getElementById('heart-container');
             const heart = document.createElement('div');
             heart.innerHTML = '❤️';
             heart.style.position = 'absolute';
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-            heart.style.animation = `floatHeart ${Math.random() * 5 + 5}s linear forwards`;
+            heart.style.fontSize = (Math.random() * 15 + 10) + 'px';
+            heart.style.animation = `floatHeart ${Math.random() * 4 + 4}s linear forwards`;
             container.appendChild(heart);
-            setTimeout(() => heart.remove(), 10000);
+            setTimeout(() => heart.remove(), 8000);
         }
-        setInterval(criarCoracao, 500);
+        setInterval(criarCoracao, 600);
 
         function toggleMusica() {
             const m = document.getElementById('musica-tema');
@@ -299,8 +218,6 @@
 
         setInterval(atualizarContador, 1000);
         atualizarContador();
-
-        window.onclick = (e) => { if(e.target == document.getElementById('modalSurpresa')) fecharSurpresa(); }
     </script>
 </body>
 </html>
