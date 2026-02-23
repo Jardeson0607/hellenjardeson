@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para minha Hellen</title>
+    <title>de jacim para lenzinha</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --cor-principal: #ff4d6d;
             --cor-fundo: #fff0f3;
-            --cor-texto: #333;
+            --cor-texto: #444;
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -20,21 +20,22 @@
             color: var(--cor-texto);
             margin: 0;
             overflow-x: hidden;
+            width: 100%;
         }
 
         header {
             padding: 60px 20px;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fotoshj/WhatsApp Image 2026-02-22 at 21.32.18.jpeg');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('fotoshj/foto1.jpeg');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
         }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: 3rem; margin: 0; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin: 0; }
 
         .contador-container {
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(255, 255, 255, 0.95);
             margin: -30px auto 30px;
             padding: 20px;
             width: 90%;
@@ -44,9 +45,9 @@
             text-align: center;
         }
 
-        #timer { font-size: 1rem; font-weight: 700; color: var(--cor-principal); }
+        #timer { font-size: 1.1rem; font-weight: 700; color: var(--cor-principal); }
 
-        /* Ajuste das Fotos para não cortar */
+        /* Carrossel de Polaroids */
         .carousel-container { width: 100%; overflow-x: auto; padding: 20px 0; display: flex; scroll-snap-type: x mandatory; scrollbar-width: none; }
         .carousel-container::-webkit-scrollbar { display: none; }
         .carousel-track { display: flex; gap: 15px; padding: 0 20px; }
@@ -55,69 +56,76 @@
             flex: 0 0 85vw; 
             max-width: 280px; 
             background: white; 
-            padding: 10px 10px 25px 10px; 
+            padding: 12px 12px 30px 12px; 
             box-shadow: 0 8px 15px rgba(0,0,0,0.1); 
             scroll-snap-align: center;
+            transform: rotate(-1deg);
         }
 
         .polaroid img { 
             width: 100%; 
             height: 300px; 
-            object-fit: contain; /* Mostra a foto inteira sem cortar */
-            background-color: #f9f9f9;
+            object-fit: contain; /* Mostra a foto inteira */
+            background-color: #fcfcfc;
         }
 
-        .polaroid p { font-family: 'Dancing Script', cursive; font-size: 1.2rem; margin: 10px 0 0; text-align: center; }
+        /* Estilo das legendas nas fotos */
+        .polaroid p { 
+            font-family: 'Dancing Script', cursive; 
+            font-size: 1.4rem; 
+            margin: 15px 0 0; 
+            text-align: center; 
+            color: #555;
+        }
 
-        /* Botões */
         .controles { padding: 20px; display: flex; flex-direction: column; gap: 12px; align-items: center; }
-        .btn { border: none; padding: 14px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; width: 80%; max-width: 280px; font-family: 'Montserrat'; }
+        .btn { border: none; padding: 14px 25px; border-radius: 50px; font-weight: 700; cursor: pointer; width: 85%; max-width: 280px; font-family: 'Montserrat'; transition: 0.3s; }
         #btn-musica { background: white; color: var(--cor-principal); border: 1px solid var(--cor-principal); }
         #btn-surpresa { background: var(--cor-principal); color: white; }
 
-        footer { padding: 20px; font-size: 0.7rem; opacity: 0.5; text-align: center; }
+        footer { padding: 30px; font-size: 0.7rem; opacity: 0.6; text-align: center; font-weight: bold; }
     </style>
 </head>
 <body>
 
     <header>
         <h1>nós</h1>
-        <p>A luz que me traz paz... 🌿</p>
+        <p style="font-family: 'Dancing Script'; font-size: 1.5rem;">A luz que me traz paz... 🌿</p>
     </header>
 
     <div class="contador-container">
-        <p style="margin:0; font-size: 0.7rem; color: #888;">NOSSO TEMPO JUNTOS</p>
+        <p style="margin:0; font-size: 0.7rem; color: #888; font-weight: 700;">NOSSO TEMPO</p>
         <div id="timer">Calculando...</div>
     </div>
 
     <div class="carousel-container">
         <div class="carousel-track">
             <div class="polaroid">
-                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.13 (1).jpeg">
-                <p>"Quero ser feliz também..." 🌊</p>
+                <img src="fotoshj/foto1.jpeg">
+                <p>"Quero ser feliz também..."</p>
             </div>
             <div class="polaroid">
-                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.14 (2).jpeg">
-                <p>"Navegar nas águas do teu mar..." ⛵</p>
+                <img src="fotoshj/foto2.jpeg">
+                <p>"Navegar nas águas do teu mar..."</p>
             </div>
             <div class="polaroid">
-                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.15 (3).jpeg">
-                <p>"Desejar para o mundo sempre o mais..." 🌿</p>
+                <img src="fotoshj/foto3.jpeg">
+                <p>"Desejar para o mundo sempre o mais..."</p>
             </div>
             <div class="polaroid">
-                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.32.18.jpeg">
-                <p>"O que eu espero para nós dois..." ✨</p>
+                <img src="fotoshj/foto5.jpeg">
+                <p>"O que eu espero para nós dois..."</p>
             </div>
             <div class="polaroid">
-                <img src="fotoshj/WhatsApp Image 2026-02-22 at 21.39.09 (1).jpeg">
-                <p>"Sempre perto de você." ❤️</p>
+                <img src="fotoshj/foto6.jpeg">
+                <p>"Sempre perto de você."</p>
             </div>
         </div>
     </div>
 
     <div class="controles">
         <audio id="musica-tema" loop>
-            <source src="maneva.mp3" type="audio/mpeg">
+            <source src="musica/maneva.mp3" type="audio/mpeg">
         </audio>
         <button onclick="toggleMusica()" id="btn-musica" class="btn">🎵 Tocar Maneva</button>
         <button onclick="alert('Quero ser feliz também, navegar nas águas do teu mar... 🌊')" id="btn-surpresa" class="btn">✨ Abrir Surpresa</button>
@@ -127,7 +135,7 @@
 
     <script>
         function atualizarContador() {
-            const dataInicio = new Date(2025, 11, 13, 1, 20); // 13 de Dezembro
+            const dataInicio = new Date(2025, 11, 13, 1, 20); 
             const agora = new Date();
             const diff = agora - dataInicio;
             const d = Math.floor(diff / (1000 * 60 * 60 * 24));
