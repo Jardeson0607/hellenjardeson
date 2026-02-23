@@ -10,157 +10,189 @@
             --cor-principal: #ff4d6d;
             --cor-fundo: #fff0f3;
             --cor-texto: #333;
+            --glass: rgba(255, 255, 255, 0.8);
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--cor-fundo);
             color: var(--cor-texto);
             margin: 0;
-            padding: 0;
             overflow-x: hidden;
             width: 100%;
+            line-height: 1.6;
+        }
+
+        /* Efeito de Corações ao Fundo */
+        #heart-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
 
         header {
-            padding: 60px 20px;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('fotoshj/capa.jpg');
+            padding: 80px 20px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('fotoshj/capa.jpeg');
             background-size: cover;
             background-position: center;
             color: white;
             text-align: center;
+            clip-path: ellipse(150% 100% at 50% 0%);
         }
 
-        h1 { font-family: 'Dancing Script', cursive; font-size: 3.5rem; margin: 0; }
+        h1 { font-family: 'Dancing Script', cursive; font-size: 4rem; margin: 0; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); }
 
-        /* Contador */
+        /* Contador Premium */
         .contador-container {
-            background: white;
-            margin: -30px auto 30px;
-            padding: 25px;
-            width: 90%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            margin: -40px auto 30px;
+            padding: 30px;
+            width: 85%;
             max-width: 500px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
             text-align: center;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
         #timer {
-            font-size: 1.2rem;
-            font-weight: bold;
+            font-size: 1.3rem;
+            font-weight: 700;
             color: var(--cor-principal);
-            margin-top: 10px;
+            letter-spacing: 1px;
         }
 
-        /* Carrossel Responsivo */
+        /* Carrossel de Polaroids */
         .carousel-container {
             width: 100%;
             overflow-x: auto;
-            padding: 20px 0 40px;
+            padding: 40px 0;
             display: flex;
             scroll-snap-type: x mandatory;
             scrollbar-width: none;
         }
         .carousel-container::-webkit-scrollbar { display: none; }
 
-        .carousel-track {
-            display: flex;
-            gap: 20px;
-            padding: 0 20px;
-        }
+        .carousel-track { display: flex; gap: 30px; padding: 0 40px; }
 
         .polaroid {
             flex: 0 0 80vw;
-            max-width: 300px;
+            max-width: 280px;
             background: white;
-            padding: 15px 15px 35px 15px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.1);
             scroll-snap-align: center;
-            transform: rotate(-2deg);
-            transition: 0.3s;
+            transform: rotate(-3deg);
+            transition: 0.5s ease;
         }
-        .polaroid:nth-child(even) { transform: rotate(2deg); }
+        .polaroid:nth-child(even) { transform: rotate(3deg); }
+        .polaroid img { width: 100%; height: 300px; object-fit: cover; border-radius: 2px; }
+        .polaroid p { font-family: 'Dancing Script', cursive; font-size: 1.6rem; margin: 15px 0 0; text-align: center; }
 
-        .polaroid img {
+        /* Cards de Revelação */
+        .cards-revelar {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .card {
             width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 2px;
+            max-width: 320px;
+            height: 100px;
+            perspective: 1000px;
+            cursor: pointer;
         }
 
-        .polaroid p {
-            font-family: 'Dancing Script', cursive;
-            font-size: 1.5rem;
-            margin: 15px 0 0;
-            text-align: center;
+        .card-inner {
+            position: relative; width: 100%; height: 100%;
+            text-align: center; transition: transform 0.8s;
+            transform-style: preserve-3d;
         }
+
+        .card.aberto .card-inner { transform: rotateY(180deg); }
+
+        .frente, .tras {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 20px; padding: 15px; font-weight: bold;
+        }
+
+        .frente { background: white; color: var(--cor-principal); border: 2px dashed var(--cor-principal); }
+        .tras { background: var(--cor-principal); color: white; transform: rotateY(180deg); }
 
         /* Botões */
         .controles {
-            margin: 30px 0;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
             align-items: center;
         }
 
         .btn {
             border: none;
-            padding: 15px 30px;
+            padding: 18px 40px;
             border-radius: 50px;
-            font-weight: bold;
+            font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
             font-family: 'Montserrat', sans-serif;
-            width: 80%;
+            width: 85%;
             max-width: 300px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         #btn-musica { background: white; color: var(--cor-principal); border: 2px solid var(--cor-principal); }
-        #btn-surpresa { background: var(--cor-principal); color: white; box-shadow: 0 5px 15px rgba(255, 77, 109, 0.3); }
+        #btn-surpresa { background: var(--cor-principal); color: white; box-shadow: 0 10px 20px rgba(255, 77, 109, 0.4); }
 
         /* Modal Surpresa */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             left: 0; top: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
         }
 
         .modal-content {
             background: white;
-            margin: 40% auto;
-            padding: 30px;
-            border-radius: 20px;
+            margin: 45% auto;
+            padding: 40px 20px;
+            border-radius: 30px;
             width: 85%;
             max-width: 400px;
             text-align: center;
             position: relative;
-            animation: bounceIn 0.5s;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes bounceIn {
-            0% { transform: scale(0.5); opacity: 0; }
-            70% { transform: scale(1.05); }
-            100% { transform: scale(1); opacity: 1; }
-        }
+        @keyframes popIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
 
-        .close { position: absolute; right: 15px; top: 5px; font-size: 25px; cursor: pointer; color: #999; }
+        .close { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: #ccc; }
 
-        footer { padding: 40px; font-size: 0.8rem; opacity: 0.6; text-align: center; }
+        footer { padding: 60px 20px; font-size: 0.8rem; opacity: 0.6; text-align: center; }
 
-        /* Media Queries para Mobile */
-        @media (max-width: 600px) {
-            h1 { font-size: 2.8rem; }
-            .modal-content { margin: 60% auto; }
+        @keyframes floatHeart {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
         }
     </style>
 </head>
 <body>
+
+    <div id="heart-container"></div>
 
     <header>
         <h1>nós</h1>
@@ -168,22 +200,38 @@
     </header>
 
     <div class="contador-container">
-        <p style="margin:0; font-size: 0.9rem;">desde o nosso primeiro beijo:</p>
-        <div id="timer">Calculando...</div>
+        <p style="margin:0; font-size: 0.8rem; text-transform: uppercase; color: #666;">Desde o nosso primeiro beijo</p>
+        <div id="timer">Calculando nosso tempo...</div>
+    </div>
+
+    <div class="cards-revelar">
+        <p style="font-family: 'Dancing Script', cursive; font-size: 1.8rem; margin-bottom: 5px;">Toque para revelar...</p>
+        <div class="card" onclick="this.classList.toggle('aberto')">
+            <div class="card-inner">
+                <div class="frente">O que sinto por você?</div>
+                <div class="tras">Um amor que cresce a cada segundo.</div>
+            </div>
+        </div>
+        <div class="card" onclick="this.classList.toggle('aberto')">
+            <div class="card-inner">
+                <div class="frente">Você é...</div>
+                <div class="tras">A luz que ilumina meus dias. 🌿</div>
+            </div>
+        </div>
     </div>
 
     <div class="carousel-container">
         <div class="carousel-track">
             <div class="polaroid">
-                <img src="fotoshj/foto1.jpg">
-                <p>O começo de tudo</p>
+                <img src="fotoshj/foto1.jpeg" alt="Momento 1">
+                <p>Nossa conexão</p>
             </div>
             <div class="polaroid">
-                <img src="fotoshj/foto2.jpg">
-                <p>Nossa sintonia</p>
+                <img src="fotoshj/foto2.jpeg" alt="Momento 2">
+                <p>Teu sorriso</p>
             </div>
             <div class="polaroid">
-                <img src="fotoshj/foto3.jpg">
+                <img src="fotoshj/foto3.jpeg" alt="Momento 3">
                 <p>13/12/2025 ❤️</p>
             </div>
         </div>
@@ -194,37 +242,50 @@
             <source src="Maneva - Luz que me traz paz - Danilo Costa .mp3" type="audio/mpeg">
         </audio>
         <button onclick="toggleMusica()" id="btn-musica" class="btn">🎵 Tocar Maneva</button>
-        <button onclick="abrirSurpresa()" id="btn-surpresa" class="btn">✨ Botão Surpresa</button>
+        <button onclick="abrirSurpresa()" id="btn-surpresa" class="btn">✨ Abrir Surpresa</button>
     </div>
 
     <div id="modalSurpresa" class="modal">
         <div class="modal-content">
             <span class="close" onclick="fecharSurpresa()">&times;</span>
-            <h2 style="font-family: 'Dancing Script', cursive; color: var(--cor-principal);">Para você...</h2>
+            <h2 style="font-family: 'Dancing Script', cursive; color: var(--cor-principal); font-size: 2.2rem;">Para Hellen</h2>
             <p>"Quero ser feliz também, navegar nas águas do teu mar..." 🌊</p>
-            <p style="font-size: 0.8rem; font-weight: bold;">— Natiruts</p>
+            <p style="font-size: 0.7rem; font-weight: bold; letter-spacing: 2px;">— NATIRUTS —</p>
         </div>
     </div>
 
     <footer>
-        <p>feito por jacim com ❤️</p>
+        <p>feito com ❤️ por jacim.</p>
     </footer>
 
     <script>
+        // Contador 13/12/2025 às 01:20
         function atualizarContador() {
-            // Data exata: 13 de Dezembro de 2025, 01:20
             const dataInicio = new Date(2025, 11, 13, 1, 20); 
             const agora = new Date();
             const diff = agora - dataInicio;
 
-            const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const minutos = Math.floor((diff / 1000 / 60) % 60);
-            const segundos = Math.floor((diff / 1000) % 60);
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / 1000 / 60) % 60);
+            const s = Math.floor((diff / 1000) % 60);
 
-            document.getElementById('timer').innerHTML = 
-                `${dias} dias, ${horas}h, ${minutos}m e ${segundos}s`;
+            document.getElementById('timer').innerHTML = `${d} dias, ${h}h, ${m}m e ${s}s`;
         }
+
+        // Sistema de Corações
+        function criarCoracao() {
+            const container = document.getElementById('heart-container');
+            const heart = document.createElement('div');
+            heart.innerHTML = '❤️';
+            heart.style.position = 'absolute';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            heart.style.animation = `floatHeart ${Math.random() * 5 + 5}s linear forwards`;
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 10000);
+        }
+        setInterval(criarCoracao, 500);
 
         function toggleMusica() {
             const m = document.getElementById('musica-tema');
@@ -239,9 +300,7 @@
         setInterval(atualizarContador, 1000);
         atualizarContador();
 
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('modalSurpresa')) fecharSurpresa();
-        }
+        window.onclick = (e) => { if(e.target == document.getElementById('modalSurpresa')) fecharSurpresa(); }
     </script>
 </body>
 </html>
